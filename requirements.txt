@@ -1,0 +1,5 @@
+pandas
+scikit-learn
+joblib
+google-cloud-pipeline-components
+kfp
