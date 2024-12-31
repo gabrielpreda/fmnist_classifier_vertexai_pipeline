@@ -1,0 +1,1 @@
+# fmnist_classifier_vertexai_pipeline
