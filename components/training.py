@@ -92,7 +92,6 @@ def train_model(processed_train_data: Input[Dataset],
     _model, history = train_model(_model, X_train, y_train, epochs=20)
 
     # Save the trained model
-    #joblib.dump(_model, model.path)
     save_model_path = os.path.join(model.path, "model.h5")
     _model.save(save_model_path, save_format="h5")
     print(f"Model saved to: {save_model_path}")

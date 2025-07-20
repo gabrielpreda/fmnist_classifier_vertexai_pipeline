@@ -25,7 +25,6 @@ def evaluate_model(processed_test_data: Input[Dataset],
     # Load processed data and the model
     X_test = joblib.load(processed_test_data.path)
     y_test = joblib.load(test_labels_data.path)
-    #_model = joblib.load(model.path)
     
     # Determine the model file path
     h5_model_path = os.path.join(model.path, "model.h5")
@@ -46,31 +45,7 @@ def evaluate_model(processed_test_data: Input[Dataset],
     y_pred = _model.predict(X_test)
     y_pred_classes = y_pred.argmax(axis=1)
     y_true_classes = y_test.argmax(axis=1)    
-    
-#     from keras.layers import TFSMLayer
-
-#     # Load the SavedModel exported with model.export()
-#     _model = TFSMLayer(model.path, call_endpoint="serving_default")
-
-#     # Wrap as a Keras model to make predictions
-#     model_for_inference = tf.keras.Sequential([_model])
-
-  
-#     # Predict using wrapped TFSMLayer model
-#     raw_output = model_for_inference(X_test)
-
-#     # Extract the tensor from the dict
-#     if isinstance(raw_output, dict):
-#         raw_output = list(raw_output.values())[0]  # Get first output
-
-    # y_pred_classes = tf.argmax(raw_output, axis=1).numpy()
-    # y_true_classes = tf.argmax(y_test, axis=1).numpy()    
-
-#     # Predict
-#     y_pred = model_for_inference(X_test)
-#     y_pred_classes = tf.argmax(y_pred, axis=1).numpy()
-#     y_true_classes = tf.argmax(y_test, axis=1).numpy()  
-    
+        
     # Print classification report
     target_names = ["Class {} ({}) :".format(i,labels[i]) for i in range(NUM_CLASSES)]
     print(classification_report(y_true_classes, y_pred_classes, target_names=target_names))
