@@ -4,7 +4,7 @@ from components.training import train_model
 from components.evaluation import evaluate_model
 from components.register import register_model
 
-@pipeline(name="fashion-mnist-classification", pipeline_root="gs://fashion-mnist/fashion_mnist_classification_pipeline")
+@pipeline(name="fashion-mnist-classification", pipeline_root="gs://vertexai-fashion-mnist/fashion_mnist_classification_pipeline")
 def product_style_pipeline(
     project: str,
     location: str,

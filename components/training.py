@@ -14,7 +14,7 @@ def train_model(processed_train_data: Input[Dataset],
         train_labels_data (Input[Dataset]): Input train labels data.
         model (Output[Model])): Output trained model.
     """
-        
+    import os
     import pandas as pd
     import joblib
     import tensorflow as tf
@@ -89,7 +89,10 @@ def train_model(processed_train_data: Input[Dataset],
     _model = define_model()
     
     # run the model
-    _model, history = train_model(_model, X_train, y_train)
+    _model, history = train_model(_model, X_train, y_train, epochs=20)
 
     # Save the trained model
-    joblib.dump(_model, model.path)
+    #joblib.dump(_model, model.path)
+    save_model_path = os.path.join(model.path, "model.h5")
+    _model.save(save_model_path, save_format="h5")
+    print(f"Model saved to: {save_model_path}")

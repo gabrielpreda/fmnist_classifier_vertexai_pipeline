@@ -18,16 +18,17 @@ def main():
     parser.add_argument("--train_file", required=True, help="Training data file")
     parser.add_argument("--test_file", required=True, help="Testing data file")
     parser.add_argument("--pipeline_template", default="fashion_mnist_pipeline.json", help="Path to the pipeline template JSON")
-    parser.add_argument("--pipeline_root", default="gs://fashion-mnist/fashion_mnist_classification_pipeline", help="GCS path for pipeline root")
+    parser.add_argument("--pipeline_root", default="gs://vertexai-fashion-mnist/fashion_mnist_classification_pipeline", help="GCS path for pipeline root")
 
     args = parser.parse_args()
 
     # Initialize Vertex AI
     aiplatform.init(
         project=args.project,
-        location=args.location,
+        location=args.location
     )
 
+        
     # Submit the pipeline job
     pipeline_job = aiplatform.PipelineJob(
         display_name="fashion-mnist-classification",
